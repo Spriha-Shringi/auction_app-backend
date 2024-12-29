@@ -33,7 +33,10 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
-
+app.use((req, res, next) => {
+  console.log(`Incoming Request: ${req.method} ${req.url}`);
+  next();
+});
 app.get('/',(req,res)=>{res.status(200).json({'msg':"HELLO WORLD"})});
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auctionitem", auctionItemRouter);
